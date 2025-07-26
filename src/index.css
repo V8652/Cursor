@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modern color palette - Light mode */
+    --background: 220 25% 97%;
+    --foreground: 224 71% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+
+    --primary: 222 89% 55%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 213 94% 68%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222 89% 55%;
+
+    /* Modern rounded corners */
+    --radius: 0.75rem;
+
+    /* Sidebar colors */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 222 89% 55%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 224.3 76.3% 48%;
+
+    /* Category colors */
+    --groceries-color: #38A169;
+    --utilities-color: #3182CE;
+    --entertainment-color: #805AD5;
+    --transportation-color: #DD6B20;
+    --dining-color: #E53E3E;
+    --shopping-color: #4C51BF;
+    --health-color: #D53F8C;
+    --travel-color: #00B5D8;
+    --housing-color: #2F855A;
+    --education-color: #DD6B20;
+    --subscriptions-color: #6B46C1;
+    --other-color: #718096;
+  }
+
+  .dark {
+    /* Modern color palette - Dark mode */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --card: 224 71% 8%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 224 71% 8%;
+    --popover-foreground: 213 31% 91%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 70% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+  }
+
+  /* Modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full transition-colors hover:bg-muted-foreground/60;
+  }
+
+  /* Page transitions */
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  .page-transition-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .page-transition-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 300ms, transform 300ms;
+  }
+}
+
+@layer components {
+  /* Modern cards with proper elevation */
+  .premium-card {
+    @apply bg-card rounded-xl shadow-sm border-0 overflow-hidden transition-all duration-300 hover:shadow;
+  }
+
+  /* Glass card */
+  .glass-card {
+    @apply bg-white/70 dark:bg-gray-900/70 backdrop-blur-md border border-white/20 dark:border-gray-800/50 shadow-sm;
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    @apply relative overflow-hidden bg-muted/50 before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent;
+  }
+
+  /* Modern button */
+  .btn-premium {
+    @apply relative overflow-hidden ripple bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium 
+    shadow-sm transition-all duration-300 
+    hover:brightness-110 active:brightness-90 focus:outline-none focus:ring-2 focus:ring-primary/50;
+  }
+
+  /* Modern input fields */
+  .premium-input {
+    @apply h-10 px-3 rounded-lg border bg-transparent focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors duration-200;
+  }
+
+  /* Material chip/tag component */
+  .premium-chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground;
+  }
+  
+  /* Modern expense card */
+  .expense-card {
+    @apply rounded-xl shadow-sm border overflow-hidden transition-all duration-300 
+    hover:shadow active:scale-[0.99];
+  }
+  
+  /* Category badge */
+  .category-badge {
+    @apply flex items-center rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+
+  /* Modern data display */
+  .data-display {
+    @apply bg-gradient-to-br from-card to-card/80 backdrop-blur-sm rounded-xl p-3 shadow-sm transition-all duration-300 hover:shadow;
+  }
+
+  /* Action buttons */
+  .action-button {
+    @apply inline-flex items-center justify-center rounded-full w-8 h-8 text-muted-foreground 
+    bg-muted/50 hover:bg-muted transition-colors;
+  }
+  
+  /* SMS Scan button fix for mobile */
+  .sms-scan-button {
+    @apply whitespace-nowrap flex-shrink-0;
+  }
+  
+  /* Force refresh animation - helps with component rerenders */
+  .force-refresh-animation {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    contain: layout style paint;
+  }
+}
+
+/* Animation utilities */
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Staggered animation for multiple elements */
+.stagger-item:nth-child(1) { animation-delay: 0ms; }
+.stagger-item:nth-child(2) { animation-delay: 50ms; }
+.stagger-item:nth-child(3) { animation-delay: 100ms; }
+.stagger-item:nth-child(4) { animation-delay: 150ms; }
+.stagger-item:nth-child(5) { animation-delay: 200ms; }
+.stagger-item:nth-child(6) { animation-delay: 250ms; }
+.stagger-item:nth-child(7) { animation-delay: 300ms; }
+.stagger-item:nth-child(8) { animation-delay: 350ms; }
+.stagger-item:nth-child(9) { animation-delay: 400ms; }
+.stagger-item:nth-child(10) { animation-delay: 450ms; }
+
+/* Mobile safe areas */
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.pl-safe {
+  padding-left: env(safe-area-inset-left);
+}
+
+.pr-safe {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Key frame animations to help with content reflow */
+@keyframes contentReflow {
+  0% { opacity: 0.99; }
+  100% { opacity: 1; }
+}
+
+/* Apply content reflow animation to force repaint */
+.content-reflow {
+  animation: contentReflow 0.1s ease-in-out;
+}
