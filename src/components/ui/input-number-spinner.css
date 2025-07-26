@@ -1,0 +1,12 @@
+/* Show number input spinners on all browsers, especially mobile/webkit */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: auto;
+  appearance: auto;
+  margin: 0;
+  display: block;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+} 
